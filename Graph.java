@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Graph {
 
-    private int vertexCount;
+    static int vertexCount;
     private List<List<Integer>> adjacencyList;
 
 
@@ -12,7 +12,7 @@ public class Graph {
         return adjacencyList;
     }
 
-    public int getVertexCount(){
+    public static int getVertexCount(){
 
         return vertexCount;
     }
