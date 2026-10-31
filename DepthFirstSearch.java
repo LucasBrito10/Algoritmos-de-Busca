@@ -1,16 +1,16 @@
 import java.util.Stack;
 
+
+
 public final class DepthFirstSearch{
-
-
-    private Stack<Integer> stack;
     
 
 
     private DepthFirstSearch(){}
 
 
-
+    //Busca em profundidade utilizando recursão
+    //Importante: este método funciona apenas com vértices com nomenclatura numérica inteira (0 a infinito)
     public static boolean recursiveDFS(Graph graph, String[] visitedArray, int startVertex, int targetVertex){
         
         if(startVertex == targetVertex) return true;
@@ -31,5 +31,43 @@ public final class DepthFirstSearch{
         return false;
 
     }
+
+    //Busca em profundidade de forma iterativa
+    //Importante: este método funciona apenas com vértices com nomenclatura numérica inteira (0 a infinito)
+    public static boolean iterativeDFS(Graph graph, int startVertex, int targetVertex){
+
+        boolean[] visitedArray = new boolean[graph.getVertexCount()];
+        Stack<Integer> stackVertex = new Stack<>();
+
+        
+        stackVertex.add(startVertex);
+
+
+
+        while(!stackVertex.isEmpty()){
+
+            int processedVertex = stackVertex.pop();
+            visitedArray[processedVertex] = true;
+            
+            for(Integer iterator : graph.getAdjacencyList().get(processedVertex)){
+
+                if(visitedArray[iterator] == false) {
+
+                    stackVertex.add(iterator);
+                    break;
+               
+                }
+            }
+
+
+        
+
+
+
+
+
+
+    }
+}
 
 }
