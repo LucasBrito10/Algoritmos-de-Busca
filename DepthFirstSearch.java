@@ -36,7 +36,7 @@ public final class DepthFirstSearch{
     //Importante: este método funciona apenas com vértices com nomenclatura numérica inteira (0 a infinito)
     public static boolean iterativeDFS(Graph graph, int startVertex, int targetVertex){
 
-        boolean[] visitedArray = new boolean[graph.getVertexCount()];
+        String[] visitedArray = new String[graph.getVertexCount()];
         Stack<Integer> stackVertex = new Stack<>();
 
         
@@ -45,18 +45,28 @@ public final class DepthFirstSearch{
 
 
         while(!stackVertex.isEmpty()){
-
-            int processedVertex = stackVertex.pop();
-            visitedArray[processedVertex] = true;
+            int count = 0;
+            int processedVertex = stackVertex.getFirst();
+            
+            visitedArray[processedVertex] = "AMARELO";
             
             for(Integer iterator : graph.getAdjacencyList().get(processedVertex)){
 
-                if(visitedArray[iterator] == false) {
+                count++;
+
+                if(visitedArray[iterator].equals("VERDE")) {
 
                     stackVertex.add(iterator);
                     break;
                
                 }
+
+                
+            }
+
+            if(count == graph.getVertexCount()){
+                stackVertex.pop();
+                visitedArray[processedVertex] = "VERMELHO";
             }
 
 
