@@ -1,15 +1,10 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import java.util.Vector;
 
 
 
 public final class BreadthFirstSearch {
-
-    private Queue<Integer> queueVertex = new LinkedList<>();
 
 
     private BreadthFirstSearch() {
@@ -19,7 +14,7 @@ public final class BreadthFirstSearch {
 
 
 
-    public static int BFS(Graph graph, int startVertex, int targetVertex){
+    public static boolean BFS(Graph graph, int startVertex, int targetVertex){
         
         
         Queue<Integer> queueVertex = new LinkedList<>();
@@ -31,26 +26,19 @@ public final class BreadthFirstSearch {
 
         while(!queueVertex.isEmpty()){
 
-            queueVertex.
+            int processedVertex = queueVertex.poll();
+            visitedArray[processedVertex] = true;
 
+            for(Integer iterator : graph.getAdjacencyList().get(processedVertex)){
+
+                if(iterator.equals(targetVertex)) return true;
+                if(visitedArray[iterator] == false) queueVertex.add(iterator);
+            
+            }
 
         } 
 
-
-
-        
-
-        
-
-
-
-
-
-
+        return false;
     }
-
-
-
-
 
 }
